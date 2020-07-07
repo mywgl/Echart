@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<script src="js/echarts.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/china.js">
+		</script>
+	</head>
+	<body>
+		<div id="map">
+		</div>
+		<script type="text/javascript">
+			var myChar = echarts.init(document.querySelector("#map"));
+			var option = {
+							geo: {
+								map: 'china',
+								label: {
+									show: false
+								}
+							},
+							label:{
+								show:true
+							},
+							tooltip:{
+								show:true,
+								formatter:function(params){
+									//console.log(params);
+									return params.name+'PM值<br/>'+params.value[3];
+								}
+							},
+							series: [{
+								type: 'scatter',
+								coordinateSystem: 'geo',
+								data: [{
+									name: '北京',
+									value: [116.46, 39.92, 36,56]
+								}, {
+									name: '南宁',
+									value: [108.376903, 22.819143, 50,66]
+								}],
+								
+								encode:{
+									value:3
+								},
+								
+								symbolSize: 20,
+								itemStyle:{
+									color:'#0000FF'
+								}
+			
+							}]
+						};
+			myChar.setOption(option);
+		</script>
+	</body>
+</html>
